@@ -1,0 +1,37 @@
+<div class="mx-auto p-4 w-50">
+  <h2 class="h2 mt-5 mb-3 text-center">Employee Details</h2>
+  <form class="form shadow p-5 mb-5 bg-body rounded" #employeeForm="ngForm" (ngSubmit)="onSubmit()" novalidate>
+    <div class="mb-4 form-group">
+      <label for="employeeName" class="form-label">Name</label>
+      <input type="name" class="form-control" id="employeeName" name="employeeName" #name="ngModel" [class.is-invalid]="name.invalid && name.touched" [class.is-valid]="name.valid && name.touched" [(ngModel)]="employeeModel.employeeName" required>
+      <small class="text-danger" [class.d-none]="name.valid || name.untouched" >Name is required</small>
+    </div>
+    
+    <div class="mb-4 form-group">
+      <label for="employeeAddress" class="form-label">Address</label>
+      <textarea class="form-control" id="employeeAddress" name="employeeAddress" #address="ngModel" [class.is-invalid]="address.invalid && address.touched" [class.is-valid]="address.valid && address.touched" [(ngModel)]="employeeModel.employeeAddress" required></textarea>
+      <small class="text-danger" [class.d-none]="address.valid || address.untouched">Address is required</small>
+    </div>
+
+    <div class="mb-4 form-group">
+      <label for="employeePhoneNumber" class="form-label">Phone no.</label>
+      <input type="tel" class="form-control" id="employeePhoneNumber" name="employeePhoneNumber" #phone="ngModel" pattern="^\d{10}$" [class.is-invalid]="phone.invalid && phone.touched" [class.is-valid]="phone.valid && phone.touched" [(ngModel)]="employeeModel.employeePhoneNumber" required>
+      <small class="text-danger" [class.d-none]="phone.valid || phone.untouched">Phone no. is required and must be 10 digits</small>
+    </div>
+
+    <div class="mb-4 form-group">
+      <label for="employeeDob" class="form-label">Date of birth</label>
+      <input type="date" class="form-control" id="employeeDob" name="employeeDob" #dob="ngModel" [class.is-invalid]="dob.invalid && dob.touched" [class.is-valid]="dob.valid && dob.touched" [(ngModel)]="employeeModel.employeeDob" required>
+      <small class="text-danger" [class.d-none]="dob.valid || dob.untouched">Invalid Date of birth</small>
+    </div>
+
+    <div class="mb-4 form-group">
+      <label for="employeeEmail" class="form-label">Email address</label>
+      <input type="email" class="form-control" id="employeeEmail" name="employeeEmail" #email="ngModel" [class.is-invalid]="email.invalid && email.touched" [class.is-valid]="email.valid && email.touched" [(ngModel)]="employeeModel.employeeEmail" email="true" required>
+      <small class="text-danger" [class.d-none]="email.valid || email.untouched">Invalid Email</small>
+    </div>
+
+    <button [disabled]="employeeForm.form.invalid" type="submit" class="btn btn-primary">Submit</button>
+    <div class="d-none text-center text-success mt-3" id="result">Check response in console</div>
+  </form>
+</div>
